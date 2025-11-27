@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.17763.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1.0.0</Version>
+    <RootNamespace>EventSystem.Listener.Toast</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EventSystem.Core\EventSystem.Core.csproj" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.0" />
+  </ItemGroup>
+  
+  <Target Name="EnsureNotificationsInReferenceCopyLocalPaths" AfterTargets="ResolveAssemblyReferences" BeforeTargets="FodyTarget">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths Include="$(NuGetPackageRoot)microsoft.toolkit.uwp.notifications\7.1.0\lib\net5.0-windows10.0.17763\Microsoft.Toolkit.Uwp.Notifications.dll" Condition="Exists('$(NuGetPackageRoot)microsoft.toolkit.uwp.notifications\7.1.0\lib\net5.0-windows10.0.17763\Microsoft.Toolkit.Uwp.Notifications.dll')" />
+      <ReferenceCopyLocalPaths Include="$(NuGetPackageRoot)system.drawing.common\4.7.0\lib\netstandard2.0\System.Drawing.Common.dll" Condition="Exists('$(NuGetPackageRoot)system.drawing.common\4.7.0\lib\netstandard2.0\System.Drawing.Common.dll')" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="5.7.0">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Fody" Version="6.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
